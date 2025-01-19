@@ -1,51 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { ref, onValue } from "firebase/database";
-import { database } from "./firebaseConfig";
+import React from "react";
+import { database } from "./firebaseConfig"; 
+import useRealTimeData from "./hooks/useRealTimeData";
 
 function App() {
-  const [realTimeVehicleData, setRealTimeVehicleData] = useState(null);
+  const { data, loading, error } = useRealTimeData(database, "/drowsiness_data");
 
-  useEffect(() => {
+  if (loading) {
+    return <p>Loading data...</p>;
+  }
 
-    const drowsinessDataRef = ref(database, "/drowsiness_data");
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
-    const unsubscribe = onValue(
-      drowsinessDataRef,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setRealTimeVehicleData(data);
-          console.log("Data: ", data);
-        } else {
-          console.log("No drowsiness data found.");
-        }
-      },
-      {
-        onlyOnce: false, // Keep listening for real-time updates
-      }
-    );
-
-    return () => unsubscribe();
-  }, []); 
-
+  if (!data) {
+    return <p>No data available.</p>;
+  }
 
   return (
     <div>
       <h1>Drowsiness Data</h1>
-      {realTimeVehicleData ? (
-        <div>
-          <p><strong>Status:</strong> {realTimeVehicleData.drowsiness_status || "Unknown"}</p>
-          <p><strong>Number of Faces:</strong> {realTimeVehicleData.number_of_faces || 0}</p>
-          <p>
-            <strong>Timestamp:</strong>{" "}
-            {realTimeVehicleData.timestamp
-              ? new Date(realTimeVehicleData.timestamp * 1000).toLocaleString()
-              : "No timestamp available"}
-          </p>
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
+      <p><strong>Status:</strong> {data.drowsiness_status || "Unknown"}</p>
+      <p><strong>Number of Faces:</strong> {data.number_of_faces || 0}</p>
+      <p>
+        <strong>Timestamp:</strong>{" "}
+        {data.timestamp
+          ? new Date(data.timestamp * 1000).toLocaleString()
+          : "No timestamp available"}
+      </p>
     </div>
   );
 }
