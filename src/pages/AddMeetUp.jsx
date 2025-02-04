@@ -1,4 +1,3 @@
-import React from "react";
 import AddMeetUpForm from "../components/AddMeetUpForm";
 
 function AddMeetUp() {
