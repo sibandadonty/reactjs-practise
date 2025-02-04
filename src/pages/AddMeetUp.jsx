@@ -19,7 +19,7 @@ function AddMeetUp() {
   }
   return (
     <div>
-      <h1>Add Meet Up</h1>
+      <h1 className="text-2xl text-center mb-2">Add Meet Up</h1>
       <AddMeetUpForm onAddMeetup={addMeetupHandler}/>
     </div>
   );
