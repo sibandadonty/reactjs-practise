@@ -1,28 +1,32 @@
 import { createContext, useState } from "react";
 
 const FavoriteContext = createContext({
-  favourites: [],
-  favoritesCount: 0,
-  isMeetupFavorite: (meetupId) => {},
-  addToFavorites: (meetupData) => {},
-  removeFromFavorites: (meetupId) => {}
+  toggleFavorites: async (meetupId, isFav) => {},
+  isLoading: false,
 });
 
 export const FavoritesContextProvider = (props) => {
-  const [favouriteMeetups, setFavoriteMeetups] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const isMeetupFavorite = (meetupId) => {};
-
-  const addToFavorites = (meetup) => {};
-  
-  const removeFromFavorites = (meetupId) => {};
+  const toggleFavorites = async (meetupId, isFav) => {
+    setIsLoading(true);
+    const res = await fetch(
+      `${import.meta.env.VITE_DATABASE_URL_BASE}/meetups/${meetupId}.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          isFav: !isFav,
+        })
+      
+      }
+    );
+    const data = await res.json();
+    setIsLoading(false);
+  };
 
   const ctxObj = {
-    favorites: favouriteMeetups,
-    favoritesCount: favouriteMeetups.length,
-    isMeetupFavorite,
-    addToFavorites,
-    removeFromFavorites
+    toggleFavorites,
+    isLoading,
   };
 
   return (
@@ -32,4 +36,4 @@ export const FavoritesContextProvider = (props) => {
   );
 };
 
-export default FavoriteContext
+export default FavoriteContext;

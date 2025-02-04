@@ -33,13 +33,13 @@ function AllMeetUps() {
     );
   }
 
-
   return (
     <div className="flex flex-col items-center">
-      <div>{allMeetups.length <= 0 && <p>No meetups to display</p>}
-        {allMeetups.length > 0 && allMeetups.map(meetup => {
-          return <MeetupCard key={meetup.id} {...meetup} />
-        })}
+      <div>
+        {allMeetups.length > 0 ?
+          allMeetups.map((meetup) => {
+            return <MeetupCard key={meetup.id} {...meetup} />;
+          }) : <p>No meetups to display</p>}
       </div>
     </div>
   );

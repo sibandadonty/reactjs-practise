@@ -8,7 +8,7 @@ function Header() {
       <div className='flex gap-4'>
       <Link to="/">All Meetups</Link>
       <Link to="/add">Add Meetup</Link>
-      <Link to="/favorite">Favorite Meetups</Link>
+      <Link to="/favorites">Favorite Meetups</Link>
       </div>
     </div>
   )

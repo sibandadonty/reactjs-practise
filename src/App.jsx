@@ -3,7 +3,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import AddMeetUp from "./pages/AddMeetUp";
 import AllMeetUps from "./pages/AllMeetUps";
 import FavouriteMeetUps from "./pages/FavouriteMeetUps";
-import Layout from "./components/Layout";
 import Header from "./components/Header";
 
 function App() {
