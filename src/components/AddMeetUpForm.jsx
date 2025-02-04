@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-function AddMeetUpForm() {
+function AddMeetUpForm(props) {
   const titleRef = useRef();
   const imageUrlRef = useRef();
   const addressRef = useRef();
@@ -16,8 +16,7 @@ function AddMeetUpForm() {
         description: descriptionRef.current.value
     }
 
-    console.log(meetupData);
-    
+    props.onAddMeetup(meetupData);
   }
 
   return (
