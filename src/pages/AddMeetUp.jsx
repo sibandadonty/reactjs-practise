@@ -1,7 +1,13 @@
 import React from "react";
+import AddMeetUpForm from "../components/AddMeetUpForm";
 
 function AddMeetUp() {
-  return <div>Add Meet Up</div>;
+  return (
+    <div>
+      <h1>Add Meet Up</h1>
+      <AddMeetUpForm />
+    </div>
+  );
 }
 
 export default AddMeetUp;

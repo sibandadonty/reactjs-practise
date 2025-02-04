@@ -3,7 +3,8 @@ import React from 'react'
 function AllMeetUps() {
   return (
     <div>
-      All Meet Ups
+      <h1>All Meet Ups</h1>
+      
     </div>
   )
 }
