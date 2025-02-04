@@ -33,11 +33,9 @@ function AllMeetUps() {
     );
   }
 
-  console.log(allMeetups);
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl mb-2">All Meet Ups</h1>
       <div>{allMeetups.length <= 0 && <p>No meetups to display</p>}
         {allMeetups.length > 0 && allMeetups.map(meetup => {
           return <MeetupCard key={meetup.id} {...meetup} />
