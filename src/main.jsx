@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./index.css"
+import "./index.css";
+import { FavoritesContextProvider } from "./store/favorite-context";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <FavoritesContextProvider>
+    <App />
+  </FavoritesContextProvider>,
+  document.getElementById("root")
+);
