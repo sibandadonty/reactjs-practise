@@ -24,9 +24,18 @@ function App() {
   function handleRow() {
     setItems((prevItems) => {
       return prevItems.map((item) => {
-        return item.isHeld ? items : { ...item, value: throwDice() };
+        return item.isHeld ? item : { ...item, value: throwDice() };
       });
     });
+    
+  }
+
+  function holdDice(id) {
+    setItems(prevItems => {
+      return prevItems.map(item => {
+        return item.id == id? {...item, isHeld: true} : item
+      })
+    })
   }
 
   return (
@@ -40,7 +49,7 @@ function App() {
         </p>
         <div className="flex flex-wrap">
           {items.map((item, i) => {
-            return <Dice key={item.id} {...item} />;
+            return <Dice key={item.id} {...item} handleHold={holdDice} />;
           })}
         </div>
         <button
