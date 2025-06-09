@@ -1,8 +1,21 @@
 import React from "react";
+import Dice from "./components/Dice";
 
 function App() {
-  const numbers = Array(12).fill(1);
-  console.log([...numbers]);
+  const items = [
+  { id: 1, isHeld: false, value: 3 },
+  { id: 2, isHeld: false, value: 6 },
+  { id: 3, isHeld: false, value: 2 },
+  { id: 4, isHeld: false, value: 5 },
+  { id: 5, isHeld: false, value: 1 },
+  { id: 6, isHeld: false, value: 4 },
+  { id: 7, isHeld: false, value: 2 },
+  { id: 8, isHeld: false, value: 6 },
+  { id: 9, isHeld: false, value: 3 },
+  { id: 10, isHeld: false, value: 5 },
+  { id: 11, isHeld: false, value: 1 },
+  { id: 12, isHeld: false, value: 4 }
+];
 
   return (
     <div className="bg-black w-full h-screen flex items-center justify-center">
@@ -14,8 +27,8 @@ function App() {
           current value between each roll.
         </p>
         <div className="flex flex-wrap"> 
-          {numbers.map((item, i) => {
-            return <div key={i} className="w-11 h-11 shadow-lg rounded-md flex justify-center items-center">{i}</div>;
+          {items.map((item, i) => {
+            return <Dice key={item.id} {...item}/>;
           })}
         </div>
         <button className="bg-blue-800 px-8 py-2 rounded-sm text-white">Roll</button>
