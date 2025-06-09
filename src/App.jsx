@@ -58,6 +58,15 @@ function App() {
     return heldItems;
   }
 
+  function newGame() {
+    setIsGameWon(false);
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        return { ...item, isHeld: false };
+      })
+    );
+  }
+
   useEffect(() => {
     const heldItems = gameWon();
     if (heldItems.length === 12) {
@@ -80,13 +89,15 @@ function App() {
           })}
         </div>
         <button
-          onClick={handleRow}
+          onClick={!isGameWOn? handleRow: newGame}
           className="bg-blue-800 px-8 py-2 rounded-xl text-white"
         >
-          Roll
+          {!isGameWOn ? "Roll" : "New Game"}
         </button>
       </div>
-      {isGameWOn && <Confetti width={width} height={height} />}
+      {isGameWOn && (
+        <Confetti width={width} height={height} title="Congradulations" />
+      )}
     </div>
   );
 }
