@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dice from "./components/Dice";
 
 function App() {
+  const [isGameWOn, setIsGameWon] = useState(false);
   const [items, setItems] = useState([
     { id: 1, isHeld: false, value: 3 },
     { id: 2, isHeld: false, value: 6 },
@@ -27,16 +28,39 @@ function App() {
         return item.isHeld ? item : { ...item, value: throwDice() };
       });
     });
-    
   }
 
   function holdDice(id) {
-    setItems(prevItems => {
-      return prevItems.map(item => {
-        return item.id == id? {...item, isHeld: true} : item
-      })
-    })
+    setItems((prevItems) => {
+      return prevItems.map((item) => {
+        return item.id == id ? { ...item, isHeld: true } : item;
+      });
+    });
   }
+
+  function gameWon() {
+    let targetValue = undefined;
+    items.forEach((item) => {
+      if (item.isHeld) {
+        targetValue = item.value;
+      }
+    });
+
+    const heldItems = []
+    items.forEach((item) => {
+      if (item.isHeld && item.value === targetValue) {
+        heldItems.push("done")
+      }
+    });
+    return heldItems;
+  }
+
+  useEffect(() => {
+    const heldItems = gameWon();
+    if (heldItems.length === 12) {
+      alert("game won");
+    }
+  }, [items]);
 
   return (
     <div className="bg-black w-full h-screen flex items-center justify-center">
