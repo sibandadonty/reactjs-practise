@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Dice from "./components/Dice";
+import { useWindowSize } from "react-use";
+import Confetti from "react-confetti";
 
 function App() {
   const [isGameWOn, setIsGameWon] = useState(false);
+  const { width, height } = useWindowSize();
   const [items, setItems] = useState([
     { id: 1, isHeld: false, value: 3 },
     { id: 2, isHeld: false, value: 6 },
@@ -46,10 +49,10 @@ function App() {
       }
     });
 
-    const heldItems = []
+    const heldItems = [];
     items.forEach((item) => {
       if (item.isHeld && item.value === targetValue) {
-        heldItems.push("done")
+        heldItems.push("done");
       }
     });
     return heldItems;
@@ -58,7 +61,7 @@ function App() {
   useEffect(() => {
     const heldItems = gameWon();
     if (heldItems.length === 12) {
-      alert("game won");
+      setIsGameWon(true);
     }
   }, [items]);
 
@@ -83,6 +86,7 @@ function App() {
           Roll
         </button>
       </div>
+      {isGameWOn && <Confetti width={width} height={height} />}
     </div>
   );
 }
