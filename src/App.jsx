@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="bg-black w-full h-screen flex items-center justify-center">
       <div className="bg-gray-300 max-w-[300px] p-4 shadow-md flex items-center justify-center flex-col gap-2">
+        <img src="./tenzies-2.jpg" alt="dice image" className="w-3/4"/>
         <h3 className="text-center text-2xl font-bold">Tenzies</h3>
         <p className="text-center">
           Roll until all dices are the same. Click each dice to freeze its
