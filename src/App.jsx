@@ -1,10 +1,9 @@
-
+import Navbar from "./Navbar";
 
 function App() {
-
   return (
     <>
-      <h1>Good</h1>
+      <Navbar />
     </>
   );
 }
