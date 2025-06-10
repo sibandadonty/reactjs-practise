@@ -1,11 +1,9 @@
-import Navbar from "./Navbar";
+
 
 function App() {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <div>
+    
+  </div>;
 }
 
 export default App;
