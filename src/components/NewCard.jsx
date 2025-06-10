@@ -21,13 +21,14 @@ function NewCards() {
     },
   ];
   return (
-    <div>
-      <h1>New</h1>
+    <div className="bg-purple-950 p-2 text-white flex flex-col gap-6">
+      <h1 className="text-orange-400 text-3xl font-bold">New</h1>
       {items.map((item) => {
         return (
-          <div key={item.id}>
-            <h2>{item.title}</h2>
-            <p>{item.content}</p>
+          <div key={item.id} className="flex flex-col gap-2">
+            <h2 className="text-2xl font-bold">{item.title}</h2>
+            <p className="leading-6">{item.content}</p>
+            <hr />
           </div>
         );
       })}
