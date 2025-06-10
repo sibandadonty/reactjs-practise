@@ -22,14 +22,14 @@ function ProductsCard() {
     },
   ];
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {items.map((item) => {
         return (
-          <div key={item.id}>
-            <img src={item.imgUrl} alt={item.imgUrl} />
-            <div>
-              <h1>{item.id}</h1>
-              <h2>{item.title}</h2>
+          <div key={item.id} className="flex gap-2">
+            <img src={item.imgUrl} alt={item.imgUrl} className="w-1/3" />
+            <div className="flex flex-col gap-2 justify-between">
+              <h1 className="text-4xl text-red-500 font-bold">{item.id}</h1>
+              <h2 className="text-2xl font-bold leading-3">{item.title}</h2>
               <p>{item.content}</p>
             </div>
           </div>
